@@ -16,6 +16,14 @@ public class Curso {
         this.diciplinas.add(diciplina);
     }
 
+    public void removeDiciplina(String nomeDiciplina){
+        for(Diciplina diciplina : diciplinas){
+            if (diciplinas.equals(diciplina)){
+                diciplinas.remove(nomeDiciplina);
+            }
+        }
+    }
+
     public String getNome() {
         return nome;
     }
@@ -30,6 +38,6 @@ public class Curso {
 
     @Override
     public String toString() {
-        return String.format("Curso -- %s", this.nome);
+        return this.nome;
     }
 }

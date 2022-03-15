@@ -3,13 +3,12 @@ package modelo;
 public class Diciplina {
 
     private String nome;
-    private static Curso curso;
+    private Curso curso;
     private Periodo periodo;
 
-    public Diciplina(String nome, Curso curso, Periodo periodo){
+    public Diciplina(String nome, Curso curso){
         this.nome = nome;
         this.curso = curso;
-        this.periodo = periodo;
     }
 
     public String getNome() {
@@ -20,12 +19,12 @@ public class Diciplina {
         this.nome = nome;
     }
 
-    public static Curso getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 
-    public static void setCurso(Curso curso) {
-        Diciplina.curso = curso;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public Periodo getPeriodo() {
@@ -38,6 +37,6 @@ public class Diciplina {
 
     @Override
     public String toString() {
-        return String.format("%s - %s\n", this.nome, this.periodo.getDescricao());
+        return String.format("%s\n", this.nome);
     }
 }

@@ -11,10 +11,10 @@ public class TestaAluno {
         Curso curso = new Curso("Engenharia de Software");
         Aluno aluno = new Aluno("9032","Gabriel Almeida", curso, Periodo.PRIMEIRO_PERIODO);
 
-        Diciplina diciplina = new Diciplina("Programação Orientada a Objetos", curso, Periodo.PRIMEIRO_PERIODO);
+        Diciplina diciplina = new Diciplina("Programação Orientada a Objetos", curso);
         curso.adicionarDiciplina(diciplina);
 
-        Diciplina diciplina2 = new Diciplina("Estrutura de Dados Avançados", curso, Periodo.PRIMEIRO_PERIODO);
+        Diciplina diciplina2 = new Diciplina("Estrutura de Dados Avançados", curso);
         curso.adicionarDiciplina(diciplina2);
 
         System.out.println(diciplina.getCurso());

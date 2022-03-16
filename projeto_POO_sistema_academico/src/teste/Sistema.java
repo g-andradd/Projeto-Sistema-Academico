@@ -160,14 +160,14 @@ public class Sistema {
                                 if (cursos.getNome().equals(nomeMinusculo)) {
                                     existeCurso = "existeCurso";
                                     if (cursos.getDiciplinas().size() > 0) {
-                                            System.out.printf("Curso: %s\nLista de diciplinas:\n", cursos.getNome());
-                                            System.out.println(cursos.getDiciplinas());
-                                    }else{
+                                        System.out.printf("Curso: %s\nLista de diciplinas:\n", cursos.getNome());
+                                        System.out.println(cursos.getDiciplinas());
+                                    } else {
                                         System.out.println("Não existem diciplpinas nesse curso!");
                                     }
                                 }
                             }
-                            if (!existeCurso.equals("existeCurso")){
+                            if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Curso não encontrado");
                             }
                             existeCurso = "";

@@ -29,7 +29,7 @@ public class Sistema {
             System.out.println("1 - Curso");
             System.out.println("2 - Diciplina");
             System.out.println("3 - Aluno");
-            System.out.println("4 - Curso");
+            System.out.println("4 - Sair");
             opcao = input.next();
 
             if (opcao.equals("1")) {
@@ -59,6 +59,7 @@ public class Sistema {
                             if (!existeCurso.equals("existeCurso")) {
                                 Curso curso = new Curso(nomeMinusculo);
                                 listaDeCursos.add(curso);
+
                                 System.out.printf("Curso %s cadastrado com sucesso!\n", nome);
                             }
                             existeCurso = "";
@@ -123,33 +124,65 @@ public class Sistema {
                         case "5":
                             System.out.println("Digite o nome do curso: ");
                             nome = input.next();
+                            nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursoRetiraDiciplina : listaDeCursos) {
-                                if (cursoRetiraDiciplina.getNome().equals(nome.toLowerCase(Locale.ROOT))) {
+                                if (cursoRetiraDiciplina.getNome().equals(nomeMinusculo)) {
+                                    existeCurso = "existeCurso";
                                     System.out.println("Digite o nome da diciplina que deseja remover: ");
                                     nome = input.next();
-                                    cursoRetiraDiciplina.removeDiciplina(nome.toLowerCase(Locale.ROOT));
-                                    System.out.printf("Curso %s removido com sucesso!\n", nome);
-                                    continue;
-                                } else {
-                                    System.out.println("Curso não encontrado!");
+                                    nomeMinusculo = nome.toLowerCase(Locale.ROOT);
+                                    for (Diciplina diciplina : cursoRetiraDiciplina.getDiciplinas()) {
+                                        if (diciplina.getNome().equals(nomeMinusculo)) {
+                                            cursoRetiraDiciplina.removeDiciplina(diciplina.getNome());
+                                            listaDeDiciplinas.remove(cursoRetiraDiciplina.getDiciplinas());
+                                            existeDiciplina = "existeDiciplina";
+                                            System.out.println(diciplina);
+                                            break;
+                                        }
+                                    }
+                                    if (!existeDiciplina.equals("existeDiciplina")) {
+                                        System.out.println("Essa diciplina não existe nesse curso!");
+                                        break;
+                                    }
                                 }
                             }
+                            if (!existeCurso.equals("existeCurso")) {
+                                System.out.println("Curso não encontrado!");
+                            }
+                            existeDiciplina = "";
+                            existeCurso = "";
                             break;
                         case "6":
                             System.out.println("Digite o nome do curso: ");
                             nome = input.next();
+                            nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursos : listaDeCursos) {
-                                if (cursos.equals(listaDeCursos)) {
-                                    System.out.println(listaDeCursos);
-                                    continue;
+                                if (cursos.getNome().equals(nomeMinusculo)) {
+                                    existeCurso = "existeCurso";
+                                    if (cursos.getDiciplinas().size() > 0) {
+                                            System.out.printf("Curso: %s\nLista de diciplinas:\n", cursos.getNome());
+                                            System.out.println(cursos.getDiciplinas());
+                                    }else{
+                                        System.out.println("Não existem diciplpinas nesse curso!");
+                                    }
                                 }
                             }
+                            if (!existeCurso.equals("existeCurso")){
+                                System.out.println("Curso não encontrado");
+                            }
+                            existeCurso = "";
                             break;
+                        case "7":
+                            System.out.println("Voltando..");
+                            break;
+                        default:
+                            System.out.println("Opção inválida! Digite o número.");
                     }
+
                 }
                 while (!opcao2.equals("7"));
             } else {
-                System.out.println("Opção inválida!!");
+                System.out.println("Opção inválida! Digite o número");
             }
 
         }

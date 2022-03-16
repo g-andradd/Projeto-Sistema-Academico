@@ -37,6 +37,6 @@ public class Diciplina {
 
     @Override
     public String toString() {
-        return String.format("%s\n", this.nome);
+        return this.nome;
     }
 }

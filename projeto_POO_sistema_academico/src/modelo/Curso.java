@@ -18,8 +18,8 @@ public class Curso {
 
     public void removeDiciplina(String nomeDiciplina){
         for(Diciplina diciplina : diciplinas){
-            if (diciplinas.equals(diciplina)){
-                diciplinas.remove(nomeDiciplina);
+            if (diciplinas.equals(nomeDiciplina)){
+                diciplinas.remove(diciplina);
             }
         }
     }

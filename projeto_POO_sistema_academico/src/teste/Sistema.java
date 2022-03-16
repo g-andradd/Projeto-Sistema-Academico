@@ -52,7 +52,7 @@ public class Sistema {
                             for (Curso curso : listaDeCursos) {
                                 if (curso.getNome().equals(nomeMinusculo)) {
                                     existeCurso = "existeCurso";
-                                    System.out.println("Esse curso já existeCurso, tente outro nome!");
+                                    System.out.println("Esse curso já existe, tente outro nome!");
                                     break;
                                 }
                             }
@@ -61,6 +61,7 @@ public class Sistema {
                                 listaDeCursos.add(curso);
                                 System.out.printf("Curso %s cadastrado com sucesso!\n", nome);
                             }
+                            existeCurso = "";
                             break;
                         case "2":
                             if (listaDeCursos.size() > 0) {
@@ -85,6 +86,7 @@ public class Sistema {
                             if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Esse curso não existeCurso!");
                             }
+                            existeCurso = "";
                             break;
                         case "4":
                             System.out.println("Nome do curso: ");
@@ -112,9 +114,11 @@ public class Sistema {
                                     }
                                 }
                             }
-                            if(!existeCurso.equals("existeCurso")){
+                            if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Esse curso não existe! Por favor, digite 1 para criar o curso.");
                             }
+                            existeCurso = "";
+                            existeDiciplina = "";
                             break;
                         case "5":
                             System.out.println("Digite o nome do curso: ");

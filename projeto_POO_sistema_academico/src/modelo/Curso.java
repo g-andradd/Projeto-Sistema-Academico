@@ -18,8 +18,9 @@ public class Curso {
 
     public void removeDiciplina(String nomeDiciplina){
         for(Diciplina diciplina : diciplinas){
-            if (diciplinas.equals(nomeDiciplina)){
+            if (diciplina.getNome().equals(nomeDiciplina)){
                 diciplinas.remove(diciplina);
+                break;
             }
         }
     }

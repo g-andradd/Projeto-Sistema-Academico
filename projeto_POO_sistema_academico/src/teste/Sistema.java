@@ -30,7 +30,7 @@ public class Sistema {
             System.out.println("2 - Diciplina");
             System.out.println("3 - Aluno");
             System.out.println("4 - Sair");
-            opcao = input.next();
+            opcao = input.nextLine();
 
             if (opcao.equals("1")) {
                 do {
@@ -42,12 +42,12 @@ public class Sistema {
                     System.out.println("5 - Remover diciplina do curso");
                     System.out.println("6 - Listar diciplinas do curso");
                     System.out.println("7 - Voltar ao menu inicial");
-                    opcao2 = input.next();
+                    opcao2 = input.nextLine();
 
                     switch (opcao2) {
                         case "1":
                             System.out.println("Digite o nome do curso: ");
-                            nome = input.next();
+                            nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso curso : listaDeCursos) {
                                 if (curso.getNome().equals(nomeMinusculo)) {
@@ -74,7 +74,7 @@ public class Sistema {
                             break;
                         case "3":
                             System.out.println("Digite o nome do curso: ");
-                            nome = input.next();
+                            nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursos : listaDeCursos) {
                                 if (cursos.getNome().equals(nomeMinusculo)) {
@@ -91,12 +91,12 @@ public class Sistema {
                             break;
                         case "4":
                             System.out.println("Nome do curso: ");
-                            nome = input.next();
+                            nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursoRecebeDiciplina : listaDeCursos) {
                                 if (cursoRecebeDiciplina.getNome().equals(nomeMinusculo)) {
                                     System.out.println("Digite o nome da diciplina: ");
-                                    nome = input.next();
+                                    nome = input.nextLine();
                                     nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                                     existeCurso = "existeCurso";
                                     for (Diciplina diciplina : cursoRecebeDiciplina.getDiciplinas()) {
@@ -123,20 +123,20 @@ public class Sistema {
                             break;
                         case "5":
                             System.out.println("Digite o nome do curso: ");
-                            nome = input.next();
+                            nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursoRetiraDiciplina : listaDeCursos) {
                                 if (cursoRetiraDiciplina.getNome().equals(nomeMinusculo)) {
                                     existeCurso = "existeCurso";
                                     System.out.println("Digite o nome da diciplina que deseja remover: ");
-                                    nome = input.next();
+                                    nome = input.nextLine();
                                     nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                                     for (Diciplina diciplina : cursoRetiraDiciplina.getDiciplinas()) {
                                         if (diciplina.getNome().equals(nomeMinusculo)) {
                                             cursoRetiraDiciplina.removeDiciplina(diciplina.getNome());
                                             listaDeDiciplinas.remove(cursoRetiraDiciplina.getDiciplinas());
                                             existeDiciplina = "existeDiciplina";
-                                            System.out.println(diciplina);
+                                            System.out.printf("Diciplina %s removida com sucesso!", nomeMinusculo);
                                             break;
                                         }
                                     }
@@ -154,7 +154,7 @@ public class Sistema {
                             break;
                         case "6":
                             System.out.println("Digite o nome do curso: ");
-                            nome = input.next();
+                            nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursos : listaDeCursos) {
                                 if (cursos.getNome().equals(nomeMinusculo)) {

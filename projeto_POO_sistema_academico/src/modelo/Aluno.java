@@ -62,4 +62,9 @@ public class Aluno {
     public void setPeriodo(Periodo periodo) {
         this.periodo = periodo;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Matrícula: %s; Nome: %s; Curso: %s", this.matricula, this.nome, this.curso.getNome());
+    }
 }

@@ -230,33 +230,6 @@ public class Sistema {
                             }
                             existeCurso = "";
                             break;
-<<<<<<< HEAD
-=======
-                        case "2":
-                            if (listaDeAlunos.size() > 0) {
-                                System.out.println("Lista de todos os alunos:");
-                                System.out.println(listaDeAlunos);
-                            } else {
-                                System.out.println("Sem alunos registrados!");
-                            }
-                            break;
-                        case "3":
-                            System.out.println("Digite o nome do curso:");
-                            nome = input.nextLine();
-                            nomeMinusculo = nome.toLowerCase(Locale.ROOT);
-
-                            for(Curso cursos : listaDeCursos){
-                                if(cursos.getNome().equals(nomeMinusculo)){
-                                    System.out.printf("Lista de alunos no curso %s:\n", cursos.getNome());
-                                    for(Aluno aluno : listaDeAlunos){
-                                        if(aluno.getCurso().equals(cursos)){
-                                            System.out.println(aluno);
-                                        }
-                                    }
-                                }
-                            break;
-                        }
->>>>>>> parent of 55d4de4 (safe poinr)
                     }
                 } while (!opcao2.equals("5"));
 

@@ -255,13 +255,32 @@ public class Sistema {
                                 }
                             }
                             break;
+                        case "4":
+                            System.out.println("Digite a matrícula do aluno que deseja remover:");
+                            matricula = input.nextLine();
+                            for (Aluno aluno : listaDeAlunos) {
+                                if (aluno.getMatricula().equals(matricula)) {
+                                    listaDeAlunos.remove(aluno);
+                                    existeAluno = "existeAluno";
+                                    break;
+                                }
+                            }
+                            if (!existeAluno.equals("existeAluno")) {
+                                System.out.println("Matrícula não encontrada!");
+                            }
+                            existeAluno = "";
+                            break;
+                        case "5":
+                            System.out.println("Voltando...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida");
                     }
                 } while (!opcao2.equals("5"));
 
             } else {
                 System.out.println("Opção inválida! Digite o número");
             }
-
         }
     }
 }

@@ -16,7 +16,7 @@ public class Teste2 {
         Curso curso = new Curso("Curso Teste");
         Curso curso2 = new Curso("Curso Teste2");
         Diciplina diciplina = new Diciplina("Teste", curso);
-        Aluno aluno = new Aluno("1232", "Testando", curso, Periodo.PRIMEIRO_PERIODO);
+        Aluno aluno = new Aluno("1232", "Testando", curso);
         curso.adicionarDiciplina(diciplina);
         aluno.setDiciplina(diciplina);
 

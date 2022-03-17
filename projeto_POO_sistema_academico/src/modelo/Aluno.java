@@ -13,11 +13,10 @@ public class Aluno {
     private Periodo periodo;
     private List<Diciplina> diciplinas = new ArrayList<>();
 
-    public Aluno(String matricula, String nome, Curso curso, Periodo periodo) {
+    public Aluno(String matricula, String nome, Curso curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.curso = curso;
-        this.periodo = periodo;
     }
 
     public String getMatricula() {

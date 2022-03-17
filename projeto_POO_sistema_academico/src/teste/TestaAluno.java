@@ -9,7 +9,7 @@ public class TestaAluno {
     public static void main(String[] args) {
 
         Curso curso = new Curso("Engenharia de Software");
-        Aluno aluno = new Aluno("9032","Gabriel Almeida", curso, Periodo.PRIMEIRO_PERIODO);
+        Aluno aluno = new Aluno("9032","Gabriel Almeida", curso);
 
         Diciplina diciplina = new Diciplina("Programação Orientada a Objetos", curso);
         curso.adicionarDiciplina(diciplina);

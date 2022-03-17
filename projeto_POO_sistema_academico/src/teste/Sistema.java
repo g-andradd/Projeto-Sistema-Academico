@@ -1,5 +1,6 @@
 package teste;
 
+import modelo.Aluno;
 import modelo.Curso;
 import modelo.Diciplina;
 
@@ -12,24 +13,27 @@ public class Sistema {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         List<Curso> listaDeCursos = new ArrayList<>();
+        List<Aluno> listaDeAlunos = new ArrayList<>();
         List<Diciplina> listaDeDiciplinas = new ArrayList<>();
 
         String opcao = "";
         String opcao2 = "";
+        String matricula = "";
         String nome = "";
+        String nomeAluno = "";
         String nomeMinusculo = "";
         String existeCurso = "";
+        String existeAluno = "";
         String existeDiciplina = "";
 
         System.out.println("========================");
         System.out.println("Bem vindo ao sistema!");
         System.out.println("========================");
-        while (!opcao.equals("4")) {
+        while (!opcao.equals("3")) {
             System.out.println("Digite o NÚMERO da opção desejada:");
             System.out.println("1 - Curso");
-            System.out.println("2 - Diciplina");
-            System.out.println("3 - Aluno");
-            System.out.println("4 - Sair");
+            System.out.println("2 - Aluno");
+            System.out.println("3 - Sair");
             opcao = input.nextLine();
 
             if (opcao.equals("1")) {
@@ -85,12 +89,12 @@ public class Sistema {
                                 }
                             }
                             if (!existeCurso.equals("existeCurso")) {
-                                System.out.println("Esse curso não existeCurso!");
+                                System.out.println("Esse curso não existe!");
                             }
                             existeCurso = "";
                             break;
                         case "4":
-                            System.out.println("Nome do curso: ");
+                            System.out.println("Digite o nome do curso: ");
                             nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursoRecebeDiciplina : listaDeCursos) {
@@ -136,7 +140,7 @@ public class Sistema {
                                             cursoRetiraDiciplina.removeDiciplina(diciplina.getNome());
                                             listaDeDiciplinas.remove(cursoRetiraDiciplina.getDiciplinas());
                                             existeDiciplina = "existeDiciplina";
-                                            System.out.printf("Diciplina %s removida com sucesso!", nomeMinusculo);
+                                            System.out.printf("Diciplina %s removida com sucesso!\n", nomeMinusculo);
                                             break;
                                         }
                                     }
@@ -181,6 +185,54 @@ public class Sistema {
 
                 }
                 while (!opcao2.equals("7"));
+            } else if (opcao.equals("2")) {
+                do {
+                    System.out.println("Digite o NÚMERO da opção desejada:");
+                    System.out.println("1 - Cadastrar aluno");
+                    System.out.println("2 - Listar alunos");
+                    System.out.println("3 - Remover aluno");
+                    System.out.println("4 - Voltar ao menu inicial");
+                    opcao2 = input.nextLine();
+
+                    switch (opcao2) {
+                        case "1":
+                            do {
+                                existeAluno = "";
+                                System.out.println("Digite a matricula do aluno: ");
+                                matricula = input.nextLine();
+                                System.out.println("Digite o nome do aluno: ");
+                                nomeAluno = input.nextLine();
+                                for (Aluno alunos : listaDeAlunos) {
+                                    if (alunos.getMatricula().equals(matricula)) {
+                                        existeAluno = "existeAluno";
+                                        System.out.println("Essa matricula já existe, tente outra vez!");
+                                        break;
+                                    }
+                                }
+                                if (!existeAluno.equals("existeAluno")) {
+                                    System.out.println("Digite o nome do curso que deseja inserir o aluno: ");
+                                    nome = input.nextLine();
+                                    nomeMinusculo = nome.toLowerCase(Locale.ROOT);
+                                    for (Curso curso : listaDeCursos) {
+                                        if (curso.getNome().equals(nomeMinusculo)) {
+                                            Aluno aluno = new Aluno(matricula, nomeAluno, curso);
+                                            listaDeAlunos.add(aluno);
+                                            System.out.printf("Aluno %s %s cadastrado com sucesso!\n", matricula, nomeAluno);
+                                            existeCurso = "existeCurso";
+                                            break;
+                                        }
+                                    }
+                                }
+                            }while (existeAluno.equals("existeAluno"));
+                            if (!existeCurso.equals("existeCurso")) {
+                                System.out.println("Esse curso não existe! Por favor, volte ao menu e insira o curso.");
+                                break;
+                            }
+                            existeCurso = "";
+                            break;
+                    }
+                } while (!opcao2.equals("5"));
+
             } else {
                 System.out.println("Opção inválida! Digite o número");
             }

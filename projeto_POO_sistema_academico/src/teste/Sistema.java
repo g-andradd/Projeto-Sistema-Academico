@@ -189,10 +189,9 @@ public class Sistema {
                 do {
                     System.out.println("Digite o NÚMERO da opção desejada:");
                     System.out.println("1 - Cadastrar aluno");
-                    System.out.println("2 - Listar todos os alunos");
-                    System.out.println("3 - Listar alunos por curso");
-                    System.out.println("4 - Remover aluno");
-                    System.out.println("5 - Voltar ao menu inicial");
+                    System.out.println("2 - Listar alunos");
+                    System.out.println("3 - Remover aluno");
+                    System.out.println("4 - Voltar ao menu inicial");
                     opcao2 = input.nextLine();
 
                     switch (opcao2) {
@@ -231,30 +230,6 @@ public class Sistema {
                             }
                             existeCurso = "";
                             break;
-                        case "2":
-                            if (listaDeAlunos.size() > 0) {
-                                System.out.println("Lista de todos os alunos:");
-                                System.out.println(listaDeAlunos);
-                            } else {
-                                System.out.println("Sem alunos registrados!");
-                            }
-                            break;
-                        case "3":
-                            System.out.println("Digite o nome do curso:");
-                            nome = input.nextLine();
-                            nomeMinusculo = nome.toLowerCase(Locale.ROOT);
-
-                            for(Curso cursos : listaDeCursos){
-                                if(cursos.getNome().equals(nomeMinusculo)){
-                                    System.out.printf("Lista de alunos no curso %s:\n", cursos.getNome());
-                                    for(Aluno aluno : listaDeAlunos){
-                                        if(aluno.getCurso().equals(cursos)){
-                                            System.out.println(aluno);
-                                        }
-                                    }
-                                }
-                            break;
-                        }
                     }
                 } while (!opcao2.equals("5"));
 

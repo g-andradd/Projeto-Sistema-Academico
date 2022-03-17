@@ -224,7 +224,7 @@ public class Sistema {
                                         }
                                     }
                                 }
-                            }while (existeAluno.equals("existeAluno"));
+                            } while (existeAluno.equals("existeAluno"));
                             if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Esse curso não existe! Por favor, volte ao menu e insira o curso.");
                                 break;
@@ -244,17 +244,17 @@ public class Sistema {
                             nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
 
-                            for(Curso cursos : listaDeCursos){
-                                if(cursos.getNome().equals(nomeMinusculo)){
+                            for (Curso cursos : listaDeCursos) {
+                                if (cursos.getNome().equals(nomeMinusculo)) {
                                     System.out.printf("Lista de alunos no curso %s:\n", cursos.getNome());
-                                    for(Aluno aluno : listaDeAlunos){
-                                        if(aluno.getCurso().equals(cursos)){
+                                    for (Aluno aluno : listaDeAlunos) {
+                                        if (aluno.getCurso().equals(cursos)) {
                                             System.out.println(aluno);
                                         }
                                     }
                                 }
+                            }
                             break;
-                        }
                     }
                 } while (!opcao2.equals("5"));
 

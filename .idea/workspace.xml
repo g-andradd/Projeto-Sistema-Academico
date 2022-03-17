@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea8a4289-2e17-421f-a121-0a3e1da89913" name="Changes" comment="arrumei a pasta">
       <changelist_data name="Gabriel Andrade Almeida" email="59920810+g-andradd@users.noreply.github.com" date="1647539248000" />
+      <change beforePath="$PROJECT_DIR$/projeto_POO_sistema_academico/out/production/projeto_POO_sistema_academico/teste/Sistema.class" beforeDir="false" afterPath="$PROJECT_DIR$/projeto_POO_sistema_academico/out/production/projeto_POO_sistema_academico/teste/Sistema.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projeto_POO_sistema_academico/src/teste/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/projeto_POO_sistema_academico/src/teste/Sistema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

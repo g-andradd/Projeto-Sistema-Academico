@@ -1,9 +1,8 @@
 package teste;
 
-import modelo.Aluno;
-import modelo.Curso;
-import modelo.Diciplina;
+import modelo.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -21,7 +20,10 @@ public class Sistema {
         String matricula = "";
         String nome = "";
         String nomeAluno = "";
+        String nomeDiciplina = "";
         String nomeMinusculo = "";
+        String bimestre = "";
+        String valorNota = "";
         String existeCurso = "";
         String existeAluno = "";
         String existeDiciplina = "";
@@ -173,6 +175,7 @@ public class Sistema {
                             }
                             if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Curso não encontrado");
+                                break;
                             }
                             existeCurso = "";
                             break;
@@ -191,8 +194,10 @@ public class Sistema {
                     System.out.println("1 - Cadastrar aluno");
                     System.out.println("2 - Listar todos os alunos");
                     System.out.println("3 - Listar alunos por curso");
-                    System.out.println("4 - Remover aluno");
-                    System.out.println("5 - Voltar ao menu inicial");
+                    System.out.println("4 - Dar nota ao aluno");
+                    System.out.println("5 - Pegar as notas do aluno");
+                    System.out.println("6 - Remover aluno");
+                    System.out.println("7 - Voltar ao menu inicial");
                     opcao2 = input.nextLine();
 
                     switch (opcao2) {
@@ -256,31 +261,118 @@ public class Sistema {
                             }
                             break;
                         case "4":
-                            System.out.println("Digite a matrícula do aluno que deseja remover:");
+                            System.out.println("Digite o curso do aluno: ");
+                            nome = input.nextLine();
+                            nomeMinusculo = nome.toLowerCase(Locale.ROOT);
+                            for (Curso curso : listaDeCursos) {
+                                if (curso.getNome().equals(nomeMinusculo)) {
+                                    existeCurso = "existeCurso";
+                                    System.out.println("Digite a diciplina: ");
+                                    nomeDiciplina = input.nextLine();
+                                    nomeMinusculo = nomeDiciplina.toLowerCase(Locale.ROOT);
+                                    for (Diciplina diciplina : curso.getDiciplinas()) {
+                                        if (diciplina.getNome().equals(nomeMinusculo)) {
+                                            existeDiciplina = "existeDiciplina";
+                                            System.out.println("Digite a matrícula do aluno: ");
+                                            matricula = input.nextLine();
+                                            for (Aluno aluno : listaDeAlunos) {
+                                                if (aluno.getMatricula().equals(matricula)) {
+                                                    existeAluno = "existeAluno";
+                                                    System.out.println("Em qual bimestre deseja inserir a nota? (Digite o número)");
+                                                    System.out.println("1 - 1° Bimestre");
+                                                    System.out.println("2 - 2° Bimestre");
+                                                    bimestre = input.nextLine();
+                                                    Nota nota;
+                                                    switch (bimestre) {
+                                                        case "1":
+                                                            nota = new Nota(diciplina);
+                                                            nota.setBimestre(Bimestre.PRIMEIRO_BIMESTRE);
+                                                            System.out.println("Digite a nota: ex(6.00)");
+                                                            valorNota = input.nextLine();
+                                                            nota.setNotaPrimeiroBimestre(new BigDecimal(valorNota));
+                                                            aluno.setNotas(nota);
+                                                            System.out.println("Nota inserida com sucesso!");
+                                                            break;
+                                                        case "2":
+                                                            nota = new Nota(diciplina);
+                                                            nota.setBimestre(Bimestre.SEGUNDO_BIMESTRE);
+                                                            System.out.println("Digite a nota:");
+                                                            valorNota = input.nextLine();
+                                                            nota.setNotaSegundoBimestre(new BigDecimal(valorNota));
+                                                            aluno.setNotas(nota);
+                                                            System.out.println("Nota inserida com sucesso!");
+                                                            break;
+                                                        default:
+                                                            System.out.println("Valor inválido!");
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            if (!existeAluno.equals("existeAluno")) {
+                                                System.out.println("Matrícula não existente!");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (!existeDiciplina.equals("existeDiciplina")) {
+                                        System.out.println("Essa diciplina não existe nesse curso");
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!existeCurso.equals("existeCurso")) {
+                                System.out.println("Esse curso não existe!");
+                                break;
+                            }
+                            existeAluno = "";
+                            existeDiciplina = "";
+                            existeCurso = "";
+                            break;
+                        case "5":
+                            System.out.println("Digite a matrícula do aluno: ");
                             matricula = input.nextLine();
                             for (Aluno aluno : listaDeAlunos) {
                                 if (aluno.getMatricula().equals(matricula)) {
-                                    listaDeAlunos.remove(aluno);
                                     existeAluno = "existeAluno";
+                                    System.out.printf("Lista de notas do aluno %s %s:\n", aluno.getMatricula(), aluno.getNome());
+                                    System.out.println(aluno.getNotas());
                                     break;
                                 }
                             }
                             if (!existeAluno.equals("existeAluno")) {
-                                System.out.println("Matrícula não encontrada!");
+                                System.out.println("Matrícula inexistente!");
                             }
                             existeAluno = "";
                             break;
-                        case "5":
-                            System.out.println("Voltando...");
-                            break;
-                        default:
-                            System.out.println("Opção inválida");
-                    }
-                } while (!opcao2.equals("5"));
+                    case "6":
+                        System.out.println("Digite a matrícula do aluno que deseja remover:");
+                        matricula = input.nextLine();
+                        for (Aluno aluno : listaDeAlunos) {
+                            if (aluno.getMatricula().equals(matricula)) {
+                                System.out.printf("Aluno %s excluído com sucesso!\n", aluno.getMatricula());
+                                listaDeAlunos.remove(aluno);
+                                existeAluno = "existeAluno";
+                                break;
+                            }
+                        }
+                        if (!existeAluno.equals("existeAluno")) {
+                            System.out.println("Matrícula não encontrada!");
+                        }
+                        existeAluno = "";
+                        break;
+                    case "7":
+                        System.out.println("Voltando...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida");
+                }
+            } while (!opcao2.equals("7")) ;
 
-            } else {
-                System.out.println("Opção inválida! Digite o número");
-            }
+        }else if (opcao.equals("3")) {
+            System.out.println("Saindo...");
+        } else {
+            System.out.println("Opção inválida! Digite o número");
         }
     }
+}
 }

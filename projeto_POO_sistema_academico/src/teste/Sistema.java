@@ -73,7 +73,9 @@ public class Sistema {
                         case "2":
                             if (listaDeCursos.size() > 0) {
                                 System.out.println("Lista de cursos:");
-                                System.out.println(listaDeCursos);
+                                for (Curso curso : listaDeCursos) {
+                                    System.out.println(curso);
+                                }
                             } else {
                                 System.out.println("Sem cursos na lista! Por favor, digite 1 para criar.");
                             }
@@ -101,29 +103,35 @@ public class Sistema {
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                             for (Curso cursoRecebeDiciplina : listaDeCursos) {
                                 if (cursoRecebeDiciplina.getNome().equals(nomeMinusculo)) {
-                                    System.out.println("Digite o nome da diciplina: ");
-                                    nome = input.nextLine();
-                                    nomeMinusculo = nome.toLowerCase(Locale.ROOT);
                                     existeCurso = "existeCurso";
-                                    for (Diciplina diciplina : cursoRecebeDiciplina.getDiciplinas()) {
-                                        if (diciplina.getNome().equals(nomeMinusculo)) {
-                                            existeDiciplina = "existeDiciplina";
-                                            System.out.println("Essa diciplina já existe nesse curso!");
+                                    while (!nomeMinusculo.equals("sair")) {
+                                        System.out.println("Digite o nome da diciplina: (PARA SAIR DIGITE SAIR)");
+                                        nome = input.nextLine();
+                                        nomeMinusculo = nome.toLowerCase(Locale.ROOT);
+                                        if (nomeMinusculo.equals("sair")) {
+                                            System.out.println("Saindo...");
                                             break;
                                         }
-                                    }
-                                    if (!existeDiciplina.equals("existeDiciplina")) {
-                                        Diciplina diciplina = new Diciplina(nomeMinusculo, cursoRecebeDiciplina);
-                                        cursoRecebeDiciplina.adicionarDiciplina(diciplina);
-                                        listaDeDiciplinas.add(diciplina);
-                                        System.out.printf("Diciplina %s adicionada ao curso %s com sucesso!\n", diciplina.getNome(), cursoRecebeDiciplina.getNome());
-                                        break;
+                                        for (Diciplina diciplina : listaDeDiciplinas) {
+                                            if (diciplina.getNome().equals(nomeMinusculo)) {
+                                                existeDiciplina = "existeDiciplina";
+                                                System.out.println("Essa diciplina já existe!");
+                                                break;
+                                            }
+                                        }
+                                        if (!existeDiciplina.equals("existeDiciplina")) {
+                                            Diciplina diciplina = new Diciplina(nomeMinusculo, cursoRecebeDiciplina);
+                                            cursoRecebeDiciplina.adicionarDiciplina(diciplina);
+                                            listaDeDiciplinas.add(diciplina);
+                                            System.out.printf("Diciplina %s adicionada ao curso %s com sucesso!\n", diciplina.getNome(), cursoRecebeDiciplina.getNome());
+                                        }
                                     }
                                 }
                             }
                             if (!existeCurso.equals("existeCurso")) {
                                 System.out.println("Esse curso não existe! Por favor, digite 1 para criar o curso.");
                             }
+                            nomeMinusculo = "";
                             existeCurso = "";
                             existeDiciplina = "";
                             break;
@@ -191,13 +199,15 @@ public class Sistema {
             } else if (opcao.equals("2")) {
                 do {
                     System.out.println("Digite o NÚMERO da opção desejada:");
-                    System.out.println("1 - Cadastrar aluno");
+                    System.out.println("1 - Matricular aluno");
                     System.out.println("2 - Listar todos os alunos");
                     System.out.println("3 - Listar alunos por curso");
-                    System.out.println("4 - Dar nota ao aluno");
-                    System.out.println("5 - Pegar as notas do aluno");
-                    System.out.println("6 - Remover aluno");
-                    System.out.println("7 - Voltar ao menu inicial");
+                    System.out.println("4 - Matricular aluno na diciplina");
+                    System.out.println("5 - listar diciplinas do aluno");
+                    System.out.println("6 - Dar nota ao aluno");
+                    System.out.println("7 - Pegar as notas do aluno");
+                    System.out.println("8 - Remover aluno");
+                    System.out.println("9 - Voltar ao menu inicial");
                     opcao2 = input.nextLine();
 
                     switch (opcao2) {
@@ -223,7 +233,7 @@ public class Sistema {
                                         if (curso.getNome().equals(nomeMinusculo)) {
                                             Aluno aluno = new Aluno(matricula, nomeAluno, curso);
                                             listaDeAlunos.add(aluno);
-                                            System.out.printf("Aluno %s %s cadastrado com sucesso!\n", matricula, nomeAluno);
+                                            System.out.printf("Aluno %s %s matriculado com sucesso!\n", matricula, nomeAluno);
                                             existeCurso = "existeCurso";
                                             break;
                                         }
@@ -238,8 +248,10 @@ public class Sistema {
                             break;
                         case "2":
                             if (listaDeAlunos.size() > 0) {
-                                System.out.println("Lista de todos os alunos:");
-                                System.out.println(listaDeAlunos);
+                                System.out.println("Lista de alunos:");
+                                for (Aluno aluno : listaDeAlunos) {
+                                    System.out.println(aluno);
+                                }
                             } else {
                                 System.out.println("Sem alunos registrados!");
                             }
@@ -261,6 +273,67 @@ public class Sistema {
                             }
                             break;
                         case "4":
+                            System.out.println("Digite a matrícula do aluno:");
+                            matricula = input.nextLine();
+                            for (Aluno aluno : listaDeAlunos) {
+                                if (aluno.getMatricula().equals(matricula)) {
+                                    existeAluno = "existeAluno";
+                                    System.out.println("Essas são as diciplinas que esse aluno pode se matricular:");
+                                    System.out.println(aluno.getCurso().getDiciplinas());
+                                    while (!nomeMinusculo.equals("sair")) {
+                                        existeDiciplina = "";
+                                        System.out.println("Digite o nome da diciplina a ser matriculado: (PARA SAIR DIGITE SAIR)");
+                                        nomeDiciplina = input.nextLine();
+                                        nomeMinusculo = nomeDiciplina.toLowerCase(Locale.ROOT);
+                                        if (nomeMinusculo.equals("sair")) {
+                                            System.out.println("Saindo...");
+                                            break;
+                                        }
+                                        for (Diciplina diciplinas : aluno.getDiciplinas()) {
+                                            if (diciplinas.getNome().equals(nomeMinusculo)) {
+                                                existeDiciplina = "existeDiciplina";
+                                                System.out.printf("O aluno %s %s já etá matriculado nessa diciplina!\n", aluno.getMatricula(), aluno.getNome());
+                                                break;
+                                            }
+                                        }
+                                        for (Diciplina diciplina : aluno.getCurso().getDiciplinas()) {
+                                            if (diciplina.getNome().equals(nomeMinusculo) && !existeDiciplina.equals("existeDiciplina")) {
+                                                existeDiciplina = "existeDiciplina";
+                                                aluno.setDiciplina(diciplina);
+                                                System.out.printf("Aluno %s %s matriculado na diciplina %s com sucesso!\n", aluno.getMatricula(), aluno.getNome(), diciplina.getNome());
+                                                break;
+                                            }
+                                        }
+                                        if (!existeDiciplina.equals("existeDiciplina")) {
+                                            System.out.println("Essa diciplina não existe nesse curso!");
+                                        }
+                                    }
+                                }
+                            }
+                            if (!existeAluno.equals("existeAluno")) {
+                                System.out.println("Matrícula inexistente!");
+                            }
+                            nomeMinusculo = "";
+                            existeAluno = "";
+                            existeDiciplina = "";
+                            break;
+                        case "5":
+                            System.out.println("Digite a matrícula do aluno:");
+                            matricula = input.nextLine();
+                            for (Aluno aluno : listaDeAlunos) {
+                                if (aluno.getMatricula().equals(matricula)) {
+                                    existeAluno = "existeAluno";
+                                    System.out.println("Lista de diciplinas do aluno:");
+                                    System.out.println(aluno.getDiciplinas());
+                                    break;
+                                }
+                            }
+                            if (!existeAluno.equals("existeAluno")) {
+                                System.out.println("Matrícula inexistente!");
+                            }
+                            existeAluno = "";
+                            break;
+                        case "6":
                             System.out.println("Digite o curso do aluno: ");
                             nome = input.nextLine();
                             nomeMinusculo = nome.toLowerCase(Locale.ROOT);
@@ -328,7 +401,7 @@ public class Sistema {
                             existeDiciplina = "";
                             existeCurso = "";
                             break;
-                        case "5":
+                        case "7":
                             System.out.println("Digite a matrícula do aluno: ");
                             matricula = input.nextLine();
                             for (Aluno aluno : listaDeAlunos) {
@@ -344,35 +417,35 @@ public class Sistema {
                             }
                             existeAluno = "";
                             break;
-                    case "6":
-                        System.out.println("Digite a matrícula do aluno que deseja remover:");
-                        matricula = input.nextLine();
-                        for (Aluno aluno : listaDeAlunos) {
-                            if (aluno.getMatricula().equals(matricula)) {
-                                System.out.printf("Aluno %s excluído com sucesso!\n", aluno.getMatricula());
-                                listaDeAlunos.remove(aluno);
-                                existeAluno = "existeAluno";
-                                break;
+                        case "8":
+                            System.out.println("Digite a matrícula do aluno que deseja remover:");
+                            matricula = input.nextLine();
+                            for (Aluno aluno : listaDeAlunos) {
+                                if (aluno.getMatricula().equals(matricula)) {
+                                    System.out.printf("Aluno %s excluído com sucesso!\n", aluno.getMatricula());
+                                    listaDeAlunos.remove(aluno);
+                                    existeAluno = "existeAluno";
+                                    break;
+                                }
                             }
-                        }
-                        if (!existeAluno.equals("existeAluno")) {
-                            System.out.println("Matrícula não encontrada!");
-                        }
-                        existeAluno = "";
-                        break;
-                    case "7":
-                        System.out.println("Voltando...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida");
-                }
-            } while (!opcao2.equals("7")) ;
+                            if (!existeAluno.equals("existeAluno")) {
+                                System.out.println("Matrícula não encontrada!");
+                            }
+                            existeAluno = "";
+                            break;
+                        case "9":
+                            System.out.println("Voltando...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida");
+                    }
+                } while (!opcao2.equals("9"));
 
-        }else if (opcao.equals("3")) {
-            System.out.println("Saindo...");
-        } else {
-            System.out.println("Opção inválida! Digite o número");
+            } else if (opcao.equals("3")) {
+                System.out.println("Saindo...");
+            } else {
+                System.out.println("Opção inválida! Digite o número");
+            }
         }
     }
-}
 }
